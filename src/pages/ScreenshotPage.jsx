@@ -5,7 +5,7 @@ import ReceiptView from '../components/Receiptview';
 const ScreenshotPage = ({ people, extra, calculateFinalPerson, totalPayable, onBack }) => {
   const screenshotRef = useRef(null);
   const [status, setStatus] = useState('ready');
-  const [customTitle, setCustomTitle] = useState('Nota Patungan'); // New customization state
+  const [customTitle, setCustomTitle] = useState('Nota Patungan');
 
   const downloadImage = async () => {
     if (!screenshotRef.current) return;
@@ -31,13 +31,12 @@ const ScreenshotPage = ({ people, extra, calculateFinalPerson, totalPayable, onB
   };
 
   const handlePrint = () => {
-    window.print(); // Triggers the browser print dialog
+    window.print();
   };
 
   return (
     <div className="min-h-screen bg-[#F2F0E9] flex flex-col items-center pt-28 pb-20 font-sans px-4 print:bg-white print:pt-0">
       
-      {/* 1. TOP NAV - Hidden during print */}
       <div className="fixed top-6 left-0 w-full flex justify-center z-[100] px-4 pointer-events-none print:hidden">
         <div className="pointer-events-auto bg-black text-white w-full max-w-md px-6 py-4 rounded-[2rem] shadow-xl flex items-center justify-between border border-white/10">
           <button onClick={onBack} className="text-[10px] font-black uppercase tracking-widest text-stone-500 hover:text-white">← Back</button>
@@ -53,7 +52,6 @@ const ScreenshotPage = ({ people, extra, calculateFinalPerson, totalPayable, onB
         </div>
       </div>
 
-      {/* 2. CUSTOMIZATION PANEL - Hidden during print */}
       <div className="w-full max-w-md mb-8 space-y-4 print:hidden">
         <div className="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm">
           <label className="text-[10px] font-black uppercase text-stone-400 block mb-2">Edit Judul Nota</label>
@@ -66,7 +64,6 @@ const ScreenshotPage = ({ people, extra, calculateFinalPerson, totalPayable, onB
         </div>
       </div>
 
-      {/* 3. RECEIPT PREVIEW */}
       <div className="print:m-0 print:shadow-none">
         <ReceiptView 
           people={people}
@@ -74,7 +71,7 @@ const ScreenshotPage = ({ people, extra, calculateFinalPerson, totalPayable, onB
           calculateFinalPerson={calculateFinalPerson}
           totalPayable={totalPayable}
           receiptRef={screenshotRef}
-          title={customTitle} // Passing custom title
+          title={customTitle}
         />
       </div>
     </div>

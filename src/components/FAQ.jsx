@@ -4,7 +4,11 @@ const FAQ = ({ people, extra, totalRaw, totalPayable, onJump }) => {
   const [showPeoplePopup, setShowPeoplePopup] = useState(false);
   const firstPerson = people[0];
   
-  const calcRaw = (items) => items.reduce((s, i) => s + (Number(i.price) || 0), 0);
+  const calcRaw = (items) => items.reduce((s, i) => {
+    const q = i.qty === '' ? 1 : (Number(i.qty) || 1);
+    const p = Number(i.price) || 0;
+    return s + (q * p);
+  }, 0);
   const firstPersonRaw = firstPerson ? calcRaw(firstPerson.items) : 0;
   
   const ongkirTotal = Number(extra.ongkir) || 0;
@@ -13,7 +17,6 @@ const FAQ = ({ people, extra, totalRaw, totalPayable, onJump }) => {
   const totalKotor = totalRaw;
   const jumlahOrang = people.length;
 
-  // Gabungkan semua nama orang untuk teks popup/hover
   const namaOrangList = people.map((p, index) => `${index + 1}. ${p.name || 'Anonim'}`).join('\n');
   const namaOrangHtmlList = people.map((p, index) => p.name || 'Anonim');
 
@@ -33,7 +36,7 @@ const FAQ = ({ people, extra, totalRaw, totalPayable, onJump }) => {
         <div className="space-y-3 w-full">
           <div>
             <span className="font-bold text-stone-900 block uppercase tracking-wide mb-1">Cara Cek Manual di Kalkulator:</span>
-                          <p><span className="font-bold text-stone-900">Harga Akhir per Orang:</span></p>
+            <p><span className="font-bold text-stone-900">Harga Akhir per Orang:</span></p>
             <div className="font-mono bg-stone-200/50 p-2 rounded-lg text-stone-800 text-[10.5px] block tracking-tighter mb-3 leading-relaxed">
               (Harga Total Item Lo ÷ Total Kotor) × (Total Kotor + Ongkir - Voucher) + (Admin ÷ Jumlah Orang)
             </div>
