@@ -52,67 +52,95 @@ const FAQ = ({ people, extra, totalRaw, totalPayable, onJump }) => {
               </p>
             </div>
             
-            {firstPerson && totalKotor > 0 && (
-              <div className="mt-5 pt-4 border-t border-stone-200/80 space-y-2">
+{firstPerson && totalKotor > 0 && (
+              <div className="mt-5 pt-4 border-t border-stone-200/80 space-y-3">
                 <span className="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">
                   Contoh Simulasi ({firstPerson.name || 'Orang Ke-1'}):
                 </span>
                 
-                <div className="font-mono bg-stone-900 text-stone-400 p-3 rounded-xl text-[11px] flex flex-wrap gap-y-1.5 items-center shadow-md leading-none tracking-tight">
-                  <span>(</span>
-                  <button onClick={() => handleElementClick('porsi')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Harga Total Item Lo">
-                    {firstPersonRaw.toLocaleString('id-ID')}
-                  </button>
-                  <span className="mx-1 text-stone-600">÷</span>
-                  <button onClick={() => handleElementClick('kotor')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Total Kotor">
-                    {totalKotor.toLocaleString('id-ID')}
-                  </button>
-                  <span>) × (</span>
-                  <button onClick={() => handleElementClick('kotor')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Total Kotor">
-                    {totalKotor.toLocaleString('id-ID')}
-                  </button>
-                  <span className="mx-1 text-stone-600">+</span>
-                  <button onClick={() => handleElementClick('ongkir')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Ongkir">
-                    {ongkirTotal.toLocaleString('id-ID')}
-                  </button>
-                  <span className="mx-1 text-stone-600">-</span>
-                  <button onClick={() => handleElementClick('voucher')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Voucher">
-                    {voucherTotal.toLocaleString('id-ID')}
-                  </button>
-                  <span>) + (</span>
-                  <button onClick={() => handleElementClick('admin')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Admin">
-                    {adminTotal.toLocaleString('id-ID')}
-                  </button>
-                  <span className="mx-1 text-stone-600">÷</span>
-                  
-                  <div className="relative inline-block">
-                    <button 
-                      onClick={() => setShowPeoplePopup(!showPeoplePopup)}
-                      onBlur={() => setTimeout(() => setShowPeoplePopup(false), 200)}
-                      className="text-amber-400 hover:text-amber-300 font-bold px-1.5 py-0.5 bg-white/5 hover:bg-white/10 rounded transition-all focus:outline-none cursor-help"
-                      title={namaOrangList}
-                    >
-                      {jumlahOrang}
+                <div className="space-y-2">
+                  <div className="font-mono bg-stone-900 text-stone-400 p-3 rounded-xl text-[11px] flex flex-wrap gap-y-1.5 items-center shadow-md leading-none tracking-tight">
+                    <span className="text-[9px] text-stone-500 font-bold uppercase mr-1 w-full block mb-1">Harga Akhir:</span>
+                    <span>(</span>
+                    <button onClick={() => handleElementClick('porsi')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Harga Total Item Lo">
+                      {firstPersonRaw.toLocaleString('id-ID')}
                     </button>
+                    <span className="mx-1 text-stone-600">÷</span>
+                    <button onClick={() => handleElementClick('kotor')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Total Kotor">
+                      {totalKotor.toLocaleString('id-ID')}
+                    </button>
+                    <span>) × (</span>
+                    <button onClick={() => handleElementClick('kotor')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Total Kotor">
+                      {totalKotor.toLocaleString('id-ID')}
+                    </button>
+                    <span className="mx-1 text-stone-600">+</span>
+                    <button onClick={() => handleElementClick('ongkir')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Ongkir">
+                      {ongkirTotal.toLocaleString('id-ID')}
+                    </button>
+                    <span className="mx-1 text-stone-600">-</span>
+                    <button onClick={() => handleElementClick('voucher')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Voucher">
+                      {voucherTotal.toLocaleString('id-ID')}
+                    </button>
+                    <span>) + (</span>
+                    <button onClick={() => handleElementClick('admin')} className="text-emerald-400 hover:text-emerald-300 font-semibold px-0.5 transition-colors underline decoration-emerald-500/30 underline-offset-2" title="Admin">
+                      {adminTotal.toLocaleString('id-ID')}
+                    </button>
+                    <span className="mx-1 text-stone-600">÷</span>
+                    
+                    <div className="relative inline-block">
+                      <button 
+                        onClick={() => setShowPeoplePopup(!showPeoplePopup)}
+                        onBlur={() => setTimeout(() => setShowPeoplePopup(false), 200)}
+                        className="text-amber-400 hover:text-amber-300 font-bold px-1.5 py-0.5 bg-white/5 hover:bg-white/10 rounded transition-all focus:outline-none cursor-help"
+                        title={namaOrangList}
+                      >
+                        {jumlahOrang}
+                      </button>
 
-                    {showPeoplePopup && (
-                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-stone-950 text-white p-3 rounded-xl border border-white/10 shadow-2xl z-50 min-w-[140px] text-left">
-                        <div className="text-[9px] font-bold uppercase text-stone-400 mb-1.5 border-b border-white/10 pb-1 tracking-wider">
-                          Daftar Orang ({jumlahOrang}):
+                      {showPeoplePopup && (
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-stone-950 text-white p-3 rounded-xl border border-white/10 shadow-2xl z-50 min-w-[140px] text-left">
+                          <div className="text-[9px] font-bold uppercase text-stone-400 mb-1.5 border-b border-white/10 pb-1 tracking-wider">
+                            Daftar Orang ({jumlahOrang}):
+                          </div>
+                          <ul className="space-y-1 text-[10px] font-sans font-medium text-stone-300 max-h-36 overflow-y-auto pr-1">
+                            {namaOrangHtmlList.map((name, i) => (
+                              <li key={i} className="truncate max-w-[140px]">
+                                <span className="text-stone-500 font-mono mr-1">{i + 1}.</span> {name}
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-stone-950"></div>
                         </div>
-                        <ul className="space-y-1 text-[10px] font-sans font-medium text-stone-300 max-h-36 overflow-y-auto pr-1">
-                          {namaOrangHtmlList.map((name, i) => (
-                            <li key={i} className="truncate max-w-[140px]">
-                              <span className="text-stone-500 font-mono mr-1">{i + 1}.</span> {name}
-                            </li>
-                          ))}
-                        </ul>
-                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-stone-950"></div>
-                      </div>
-                    )}
+                      )}
+                    </div>
+                    <span>)</span>
                   </div>
 
-                  <span>)</span>
+                  <div className="font-mono bg-stone-900 text-stone-400 p-3 rounded-xl text-[10.5px] space-y-2 shadow-md leading-none tracking-tight">
+                    <span className="text-[9px] text-stone-500 font-bold uppercase block mb-0.5">Detail Proporsi:</span>
+                    <div className="flex flex-wrap items-center gap-y-1">
+                      <span className="text-stone-500 mr-1">Ongkir</span>
+                      <span>(</span>
+                      <button onClick={() => handleElementClick('porsi')} className="text-emerald-400 hover:text-emerald-300 px-0.5 underline decoration-emerald-500/30">{firstPersonRaw.toLocaleString('id-ID')}</button>
+                      <span className="mx-0.5 text-stone-600">÷</span>
+                      <button onClick={() => handleElementClick('kotor')} className="text-emerald-400 hover:text-emerald-300 px-0.5 underline decoration-emerald-500/30">{totalKotor.toLocaleString('id-ID')}</button>
+                      <span>) ×</span>
+                      <button onClick={() => handleElementClick('ongkir')} className="text-emerald-400 hover:text-emerald-300 ml-1 px-0.5 underline decoration-emerald-500/30">{ongkirTotal.toLocaleString('id-ID')}</button>
+                      <span className="mx-1 text-stone-500">=</span>
+                      <span className="text-white font-bold">Rp {Math.round((firstPersonRaw / totalKotor) * ongkirTotal).toLocaleString('id-ID')}</span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-y-1">
+                      <span className="text-stone-500 mr-1">Voucher</span>
+                      <span>(</span>
+                      <button onClick={() => handleElementClick('porsi')} className="text-emerald-400 hover:text-emerald-300 px-0.5 underline decoration-emerald-500/30">{firstPersonRaw.toLocaleString('id-ID')}</button>
+                      <span className="mx-0.5 text-stone-600">÷</span>
+                      <button onClick={() => handleElementClick('kotor')} className="text-emerald-400 hover:text-emerald-300 px-0.5 underline decoration-emerald-500/30">{totalKotor.toLocaleString('id-ID')}</button>
+                      <span>) ×</span>
+                      <button onClick={() => handleElementClick('voucher')} className="text-emerald-400 hover:text-emerald-300 ml-1 px-0.5 underline decoration-emerald-500/30">{voucherTotal.toLocaleString('id-ID')}</button>
+                      <span className="mx-1 text-stone-500">=</span>
+                      <span className="text-red-400 font-bold">Rp {Math.round((firstPersonRaw / totalKotor) * voucherTotal).toLocaleString('id-ID')}</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="text-[10.5px] text-stone-500 space-y-1 pt-1">
