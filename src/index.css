@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animasi Masuk */
+.page-enter {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Animasi Keluar */
+.page-exit {
+  animation: fadeOut 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.98); }
+}
+
+@keyframes smartPulse {
+  0%, 100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+  20%, 60% {
+    background-color: #fef08a; /* bg-yellow-200 */
+    transform: scale(1.1);
+    font-weight: 900;
+  }
+  40%, 80% {
+    background-color: #fde047; /* bg-yellow-300 lebih pekat */
+    transform: scale(1.05);
+  }
+}
+
+.animate-smart-pulse {
+  animation: smartPulse 3s ease-in-out;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+@media print {
+  body {
+    background: white !important;
+  }
+  /* Hide everything except the receipt */
+  button, .print\:hidden {
+    display: none !important;
+  }
+  /* Ensure the receipt takes center stage */
+  .max-w-md {
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
